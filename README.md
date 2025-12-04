@@ -1,59 +1,283 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## ✅ System Requirements (Debian)
 
-## About Laravel
+### **1. Update system**
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+```bash
+sudo apt update && sudo apt upgrade -y
+```
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## ✅ Required Packages
 
-## Learning Laravel
+### **2. PHP 8.3 + Common Extensions**
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+Laravel 12 requires PHP ^8.3.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Install PHP 8.3 and required extensions:
 
-## Laravel Sponsors
+```bash
+sudo apt install -y \
+    php8.3 php8.3-cli php8.3-common php8.3-fpm \
+    php8.3-mbstring php8.3-xml php8.3-zip php8.3-sqlite3 \
+    php8.3-curl php8.3-gd php8.3-bcmath php8.3-intl \
+    unzip curl git
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### Enabled PHP extensions required by Laravel:
 
-### Premium Partners
+* `mbstring`
+* `pdo` + `pdo_sqlite`
+* `tokenizer`
+* `xml`
+* `curl`
+* `openssl`
+* `fileinfo`
+* `sqlite3`
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+✔ The command above installs all of them.
 
-## Contributing
+---
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## ✅ SQLite (Database Engine)
 
-## Code of Conduct
+Laravel 12 uses SQLite in this project.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Install SQLite:
 
-## Security Vulnerabilities
+```bash
+sudo apt install -y sqlite3
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Create the application database file if not exists:
 
-## License
+```bash
+touch database/database.sqlite
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Verify:
+
+```bash
+sqlite3 database/database.sqlite ".tables"
+```
+
+---
+
+## ✅ Node.js / NPM (for Vite)
+
+Laravel 12 uses **Vite** to compile frontend assets.
+
+Install Node.js 20 (recommended):
+
+```bash
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+sudo apt install -y nodejs
+```
+
+Check versions:
+
+```bash
+node -v
+npm -v
+```
+
+---
+
+## 🧰 Global Tools (optional but recommended)
+
+### **Composer**
+
+If Composer isn’t installed:
+
+```bash
+sudo apt install -y composer
+```
+
+Or manual:
+
+```bash
+curl -sS https://getcomposer.org/installer | php
+sudo mv composer.phar /usr/local/bin/composer
+```
+
+---
+
+# 🚀 Project Installation
+
+Clone project:
+
+```bash
+git clone <your-repo-url>
+cd <project-folder>
+```
+
+---
+
+## 1️⃣ Install Composer Dependencies
+
+```bash
+composer install
+```
+
+---
+
+## 2️⃣ Create the `.env` file
+
+```bash
+cp .env.example .env
+```
+
+Generate key:
+
+```bash
+php artisan key:generate
+```
+
+---
+
+## 3️⃣ Ensure SQLite database exists
+
+```bash
+touch database/database.sqlite
+```
+
+---
+
+## 4️⃣ Run Migrations
+
+```bash
+php artisan migrate
+```
+
+---
+
+## 5️⃣ Install Node Dependencies
+
+```bash
+npm install
+```
+
+---
+
+## 6️⃣ Build assets (production)
+
+```bash
+npm run build
+```
+
+or for development (hot reload):
+
+```bash
+npm run dev
+```
+
+---
+
+# ▶️ Running the Application
+
+Start Laravel's built-in server:
+
+```bash
+php artisan serve
+```
+
+Visit:
+
+```
+http://localhost:8000
+```
+
+---
+
+# 🛠 Useful Composer Scripts
+
+### **Development environment**
+
+```bash
+composer dev
+```
+
+This runs:
+
+* Laravel server
+* Queue worker
+* Laravel Pail
+* Vite (hot reload)
+
+### **Setup script**
+
+```bash
+composer setup
+```
+
+Automatically:
+
+* installs dependencies
+* copies `.env`
+* generates key
+* migrates
+* installs node deps
+* builds assets
+
+### **Run tests**
+
+```bash
+composer test
+```
+
+---
+
+# 📁 Project Dependencies (from composer.json)
+
+### **Production**
+
+* `laravel/framework:^12.0`
+* `laravel/tinker:^2.10.1`
+* `php:^8.3`
+
+### **Development**
+
+* `fakerphp/faker`
+* `laravel/pail`
+* `laravel/pint`
+* `laravel/sail`
+* `mockery/mockery`
+* `nunomaduro/collision`
+* `phpunit/phpunit:^11.5.3`
+
+---
+
+# 🗃 Directory Notes
+
+SQLite database is stored here:
+
+```
+database/database.sqlite
+```
+
+Blade views in:
+
+```
+resources/views/
+```
+
+Vite assets:
+
+```
+resources/js/
+resources/css/
+```
+
+---
+
+# ✔ Everything Ready
+
+Your Debian system is now fully configured to run Laravel 12 with:
+
+* PHP 8.3
+* SQLite
+* Composer
+* Node.js + Vite
+* Laravel migrations & seeds
+* Hot reload development workflow
