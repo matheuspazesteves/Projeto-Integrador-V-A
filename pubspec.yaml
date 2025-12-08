@@ -1,0 +1,26 @@
+name: contatos_app
+description: App de exemplo para gerenciar contatos com SQLite
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '^3.10.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  sqflite: ^2.2.8
+  path_provider: ^2.0.11
+
+flutter:
+  uses-material-design: true
+
+
+dev_dependencies:
+  flutter_launcher_icons: ^0.13.1
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/icon.png"
