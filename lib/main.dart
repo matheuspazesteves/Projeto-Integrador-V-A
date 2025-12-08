@@ -28,7 +28,7 @@ class DBHelper {
 
   static Future<Database> initDb() async {
     final databasesPath = await getDatabasesPath();
-    final path = p.join(databasesPath, 'contacts.db'); // <-- uso de p.join
+    final path = p.join(databasesPath, 'contacts.db');
 
     return await openDatabase(path, version: 1, onCreate: (db, version) async {
       await db.execute('''
@@ -240,7 +240,7 @@ class _AddEditPageState extends State<AddEditPage> {
   }
 
   String? _validatePhone(String? v) {
-    if (v == null || v.trim().isEmpty) return null; // telefone opcional? se quiser obrigar, mude aqui
+    if (v == null || v.trim().isEmpty) return null;
     final s = v.trim();
     if (!_phoneRegExp.hasMatch(s)) return 'Telefone deve conter apenas números';
     if (s.length < 6 || s.length > 15) return 'Telefone com tamanho inválido';
@@ -248,7 +248,7 @@ class _AddEditPageState extends State<AddEditPage> {
   }
 
   String? _validateEmail(String? v) {
-    if (v == null || v.trim().isEmpty) return null; // e-mail opcional? se quiser obrigar, mude aqui
+    if (v == null || v.trim().isEmpty) return null;
     final s = v.trim();
     if (!_emailRegExp.hasMatch(s)) return 'E-mail inválido';
     return null;
@@ -275,7 +275,7 @@ class _AddEditPageState extends State<AddEditPage> {
               decoration: InputDecoration(labelText: 'Telefone', hintText: 'Apenas números'),
               keyboardType: TextInputType.phone,
               inputFormatters: [
-                FilteringTextInputFormatter.digitsOnly, // bloqueia não-dígitos
+                FilteringTextInputFormatter.digitsOnly,
               ],
               validator: _validatePhone,
             ),
